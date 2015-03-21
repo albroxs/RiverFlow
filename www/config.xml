@@ -74,7 +74,7 @@
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
 
-    <gap:plugin name="com.bordeux.sqlite-plugin" version="1.0.1" />
+    <gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.4" />
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />

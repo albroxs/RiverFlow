@@ -1,13 +1,15 @@
 // Wait for Cordova to load
 document.addEventListener("deviceready", onDeviceReady, false);
 
+var db;
 
 // Cordova is ready
 function onDeviceReady() {
 
 
     var url = 'http://api.rainchasers.com/v1/river?ts=1357504926';
-    var db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1});
+
+    db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1, androidLockWorkaround: 1});
 
     db.transaction(function (tx) {
         tx.executeSql('DROP TABLE IF EXISTS RIVERS');
@@ -21,8 +23,6 @@ function onDeviceReady() {
 }
 
 function populateDB(url) {
-
-    var db = window.sqlitePlugin.openDatabase({name: "DB"});
 
     $.getJSON(url, function (result) {
 
@@ -72,8 +72,6 @@ function findRiver(query) {
 
     var sqlStatement = "SELECT * FROM RIVERS WHERE riverName OR riverSection LIKE " + query + ";";
     console.log(sqlStatement);
-
-    var db = window.sqlitePlugin.openDatabase({name: "DB"});
 
     db.transaction(function (tx) {
 
