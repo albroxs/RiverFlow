@@ -3,6 +3,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 // Cordova is ready
 function onDeviceReady() {
+
+   var url = 'http://api.rainchasers.com/v1/river?ts=1357504926';
+
     var db = window.sqlitePlugin.openDatabase({name: "DB"});
 
     db.transaction(function (tx) {
