@@ -8,10 +8,7 @@ function onDeviceReady() {
     url = 'http://api.rainchasers.com/v1/river?ts=1357504926';
     $.getJSON(url, function(result){
         $.each(result, function(i, field){
-
-            var obj = JSON.parse(result);
-
-           var print = obj.data[1].desc;
+          var print = field[i].uuid;
 
             console.log(print);
         });
