@@ -24,8 +24,7 @@ function onDeviceReady() {
 
         $.each(result.data, function (i, field) {
 
-            console.log(result.data[i]);
-            console.log(result.field[i]);
+            console.log(result.data[i].uuid);
 
             var uuid = result.data[i].uuid;
             var url = result.data[i].url;
