@@ -1,13 +1,14 @@
 // Wait for Cordova to load
 document.addEventListener("deviceready", onDeviceReady, false);
 
+var db;
 
 // Cordova is ready
 function onDeviceReady() {
 
 
     var url = 'http://api.rainchasers.com/v1/river?ts=1357504926';
-    var db = window.sqlitePlugin.openDatabase({name: "DB"});
+    db = window.sqlitePlugin.openDatabase({name: "DB"});
 
     db.transaction(function (tx) {
         tx.executeSql('DROP TABLE IF EXISTS RIVERS');
