@@ -143,6 +143,11 @@ h3 {
     height:25px;
 }
 
+.search-button {
+    width:100%;
+    height:25px;
+}
+
 .search-label{
     padding-top:10px;
     padding-bottom:10px;

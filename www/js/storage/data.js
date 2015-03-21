@@ -28,7 +28,6 @@ function populateDB(url) {
         var nextURL = result.meta.link.next;
 
         $.each(result.data, function (i, field) {
-            console.log(result.data[i]);
             var uuid = result.data[i].uuid;
             var url = result.data[i].url;
             var riverName = result.data[i].river;
