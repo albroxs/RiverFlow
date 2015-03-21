@@ -17,7 +17,7 @@ function onDeviceReady() {
 
         var nextURL = result.meta.link.next;
 
-        $.each(data, function (i, field) {
+        $.each(result, function (i, field) {
 
             var uuid = result.data[i].uuid;
             var url = result.data[i].url;
