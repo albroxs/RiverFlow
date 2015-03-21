@@ -1,7 +1,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.steelcitystudios.riverflow" version="1.0.0">
   <name>RiverFlow</name>
   <description>
-    Running Rivers? Check water levels for rivers in the UK. Includes information on all populate rivers and runs, including water levels, and putins and put-out points.
+    Running Rivers? Check water levels for rivers in the UK. Includes information on all popular rivers and runs, including water levels, and putins and put-out points.
   </description>
   <author href="http://www.steel-city-studios.co.uk" email="info@steel-city-studios.co.uk">
     Steel-city-studios
