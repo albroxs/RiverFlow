@@ -20,9 +20,12 @@ function onDeviceReady() {
         console.log(nextURL);
         console.log(result);
 
-        $.each(result, function (i, field) {
+
+
+        $.each(result.data, function (i, field) {
 
             console.log(result.data[i]);
+            console.log(result.field[i]);
 
             var uuid = result.data[i].uuid;
             var url = result.data[i].url;
