@@ -8,7 +8,7 @@ function onDeviceReady() {
 
 
     var url = 'http://api.rainchasers.com/v1/river?ts=1357504926';
-    db = window.sqlitePlugin.openDatabase({name: "DB"});
+    db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1});
 
     db.transaction(function (tx) {
         tx.executeSql('DROP TABLE IF EXISTS RIVERS');
@@ -54,4 +54,23 @@ function populateDB(url) {
             populateDB(nextURL);
         }
     });
+
+    $('.search-button').click(function(){
+
+        var query = $('.search-key').val();
+        findRiver(query);
+    });
+
+    function findRiver(query) {
+        db.transaction(function (tx) {
+            tx.executeSql("SELECT * FROM RIVERS WHERE riverName OR riverSection LIKE" + query + ";", [], function(tx, res) {
+
+                console.log(res.rows.item[tx]);
+            });
+        });
+
+
+    }
+
+
 }
