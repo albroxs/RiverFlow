@@ -57,6 +57,7 @@ function populateDB(url) {
     $('.search-button').click(function(){
 
         var query = $('.search-key').val();
+        console.log(query);
         findRiver(query);
     });
 
