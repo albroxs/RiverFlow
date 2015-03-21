@@ -17,10 +17,15 @@ function onDeviceReady() {
 
         var nextURL = result.meta.link.next;
 
+        console.log(nextURL);
+        console.log(result);
+
         $.each(result, function (i, field) {
 
-            //var uuid = result.data[i].uuid;
-            //var url = result.data[i].url;
+            console.log(result.data[i]);
+
+            var uuid = result.data[i].uuid;
+            var url = result.data[i].url;
             var riverName = result.data[i].river;
             var riverSection = result.data[i].section;
             var km = result.data[i].km;
