@@ -62,9 +62,10 @@ function populateDB(url) {
     });
 
     function findRiver(query) {
+        
         db.transaction(function (tx) {
            var sqlStatement = "SELECT * FROM RIVERS WHERE riverName OR riverSection LIKE" + query + ";";
-                console.log(query);
+                console.log(sqlStatement);
             tx.executeSql(sqlStatement, [], function(tx, res) {
                 console.log(res.rows.item[tx]);
             });
