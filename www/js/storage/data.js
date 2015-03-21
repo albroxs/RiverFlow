@@ -19,8 +19,8 @@ function onDeviceReady() {
 
         $.each(result, function (i, field) {
 
-            var uuid = result.data[i].uuid;
-            var url = result.data[i].url;
+            //var uuid = result.data[i].uuid;
+            //var url = result.data[i].url;
             var riverName = result.data[i].river;
             var riverSection = result.data[i].section;
             var km = result.data[i].km;
