@@ -50,7 +50,7 @@ function populateDB(url) {
 
         });
 
-        if (nextURL != NULL) {
+        if (nextURL != null) {
             populateDB(nextURL);
         }
     });
