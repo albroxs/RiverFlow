@@ -8,8 +8,12 @@ function onDeviceReady() {
     url = 'http://api.rainchasers.com/v1/river?ts=1357504926';
     $.getJSON(url, function(result){
         $.each(result, function(i, field){
-            console.log(i);
-            console.log(field);
+
+            var obj = JSON.parse(result);
+
+           var print = obj.data[1].desc;
+
+            console.log(print);
         });
     });
 
