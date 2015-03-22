@@ -24,7 +24,7 @@ function createTables(tx) {
     tx.executeSql("CREATE TABLE IF NOT EXISTS rivers (id integer primary key , uuid text, url text, riverName text, riverSection text, km text, gradeText text, description text, directions text, putinLat text, putinLng text, takeOutLat text, takeOUTLng text)");
 
 
-    populateDB();
+    populateDB;
 }
 
 function populateDB(tx) {
