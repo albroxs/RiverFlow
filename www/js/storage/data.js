@@ -50,6 +50,8 @@ function populateDB(url) {
                 tx.executeSql("INSERT INTO RIVERS (uuid, url, riverName, riverSection, km, description, directions, putinLat, putinLng, takeOutLat, takeOutLng) " +
                 "VALUES (" + uuid + "," + url + "," + riverName + "," + riverSection + "," + km + "," + gradeText + "," + description + "," +
                 directions + "," + putinLat + "," + putinLng + "," + takeOutLat + "," + takeOutLng + ")");
+                console.log("Rows Affected:" + res.rowsAffected);
+                console.log("Insert ID: " + res.insertId);
             });
 
         });
@@ -57,10 +59,6 @@ function populateDB(url) {
         if (nextURL != null) {
             populateDB(nextURL);
         }
-
-        db.executeSql("pragma table_info (RIVERS);", [], function(res) {
-            console.log("PRAGMA res: " + JSON.stringify(res));
-        });
     });
 
 
