@@ -13,7 +13,7 @@ function onDeviceReady() {
 
     db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1, androidLockWorkaround: 1});
 
-    db.transaction(createTables(), errorCB, successCB);
+    db.transaction(createTables, errorCB, successCB);
 
 
 }
