@@ -75,8 +75,10 @@ function findRiver(query) {
 
     db.transaction(function (tx) {
 
-        tx.executeSql(sqlStatement, [], function(tx, res) {
-            console.log(res);
+        tx.executeSql("select count(uuid) as cnt from RIVERS;", [], function(tx, res) {
+            console.log("res.rows.length: " + res.rows.length + " -- should be 1");
+        //tx.executeSql(sqlStatement, [], function(tx, res) {
+        //    console.log(res);
         });
     });
 
