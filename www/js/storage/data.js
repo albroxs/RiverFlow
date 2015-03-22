@@ -1,29 +1,30 @@
 // Wait for Cordova to load
 document.addEventListener("deviceready", onDeviceReady, false);
 
+var db;
 
 // Cordova is ready
 function onDeviceReady() {
 
-
     var url = 'http://api.rainchasers.com/v1/river?ts=1357504926';
 
-   var db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1, androidLockWorkaround: 1});
 
-    db.transaction(function (tx) {
-        tx.executeSql("DROP TABLE IF EXISTS rivers");
-        tx.executeSql("CREATE TABLE IF NOT EXISTS rivers (id integer primary key , uuid text, url text, riverName text, riverSection text, km text, gradeText text, description text, directions text, putinLat text, putinLng text, takeOutLat text, takeOUTLng text)");
+    db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1, androidLockWorkaround: 1});
 
-    });
-
-    populateDB(url);
+    db.transaction(createTables(url), errorCB, successCB);
 
 
 }
 
-function populateDB(url) {
+function createTables(url) {
 
-    var db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1, androidLockWorkaround: 1});
+    tx.executeSql("DROP TABLE IF EXISTS rivers");
+    tx.executeSql("CREATE TABLE IF NOT EXISTS rivers (id integer primary key , uuid text, url text, riverName text, riverSection text, km text, gradeText text, description text, directions text, putinLat text, putinLng text, takeOutLat text, takeOUTLng text)");
+
+    populateDB(url);
+}
+
+function populateDB(url) {
 
     $.getJSON(url, function (result) {
 
@@ -47,8 +48,7 @@ function populateDB(url) {
 
             db.transaction(function (tx) {
                 tx.executeSql("INSERT INTO rivers (uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng) " +
-                "VALUES (" + uuid + "," + url + "," + riverName + "," + riverSection + "," + km + "," + gradeText + "," + description + "," +
-                directions + "," + putinLat + "," + putinLng + "," + takeOutLat + "," + takeOutLng + ")", [], function(tx, res){
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng], function(tx, res){
                         console.log("Rows Affected:" + res.rowsAffected);
                         console.log("Insert ID: " + res.insertId);
                     });
@@ -76,16 +76,23 @@ $('.search-button').click(function(){
 });
 
 function findRiver(query) {
-    var db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1, androidLockWorkaround: 1});
 
-    var sqlStatement = "SELECT * FROM RIVERS WHERE riverName OR riverSection LIKE " + query + ";";
+    var sqlStatement = "SELECT * FROM rivers WHERE riverName OR riverSection LIKE " + query + ";";
     console.log(sqlStatement);
 
     db.transaction(function (tx) {
-        tx.executeSql(sqlStatement, [], function(tx, res) {
+        tx.executeSql(sqlStatement, [], function (tx, res) {
             console.log(res);
         });
     });
 
-
 }
+
+// Transaction error callback
+function errorCB(err) {
+    console.log("Error processing SQL: " + err.code);
+}
+// Success error callback
+function successCB() {
+}
+
