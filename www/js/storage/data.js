@@ -12,8 +12,8 @@ function onDeviceReady() {
     db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1, androidLockWorkaround: 1});
 
     db.transaction(function (tx) {
-        tx.executeSql("DROP TABLE IF EXISTS RIVERS");
-        tx.executeSql("CREATE TABLE IF NOT EXISTS RIVERS (uuid PRIMARY KEY, url TEXT, riverName TEXT, riverSection TEXT, km TEXT, gradeText TEXT, description TEXT, directions TEXT, putinLat TEXT, putinLng TEXT, takeOutLat TEXT, takeOUTLng TEXT)");
+        tx.executeSql("DROP TABLE IF EXISTS rivers");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS rivers (id integer primary key , uuid text, url text, riverName text, riverSection text, km text, gradeText text, description text, directions text, putinLat text, putinLng text, takeOutLat text, takeOUTLng text)");
 
     });
 
@@ -42,12 +42,12 @@ function populateDB(url) {
             var takeOutLat = result.data[i].position[1].lat;
             var takeOutLng = result.data[i].position[1].lat;
 
-            console.log("I got this far!");
+            console.log("I got here!");
 
             db.transaction(function (tx) {
-                tx.executeSql("INSERT INTO RIVERS (uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng) " +
+                tx.executeSql("INSERT INTO rivers (uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng) " +
                 "VALUES (" + uuid + "," + url + "," + riverName + "," + riverSection + "," + km + "," + gradeText + "," + description + "," +
-                directions + "," + putinLat + "," + putinLng + "," + takeOutLat + "," + takeOutLng + ");", [], function(tx, res){
+                directions + "," + putinLat + "," + putinLng + "," + takeOutLat + "," + takeOutLng + ")", [], function(tx, res){
                         console.log("Rows Affected:" + res.rowsAffected);
                         console.log("Insert ID: " + res.insertId);
                     });
