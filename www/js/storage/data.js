@@ -3,28 +3,31 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 var db;
 
+var url = 'http://api.rainchasers.com/v1/river?ts=1357504926';
+
 // Cordova is ready
 function onDeviceReady() {
 
-    var url = 'http://api.rainchasers.com/v1/river?ts=1357504926';
+
 
 
     db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1, androidLockWorkaround: 1});
 
-    db.transaction(createTables(url), errorCB, successCB);
+    db.transaction(createTables(), errorCB, successCB);
 
 
 }
 
-function createTables(tx, url) {
+function createTables(tx) {
 
     tx.executeSql("DROP TABLE IF EXISTS rivers");
     tx.executeSql("CREATE TABLE IF NOT EXISTS rivers (id integer primary key , uuid text, url text, riverName text, riverSection text, km text, gradeText text, description text, directions text, putinLat text, putinLng text, takeOutLat text, takeOUTLng text)");
 
-    populateDB(url);
+
+    populateDB();
 }
 
-function populateDB(tx, url) {
+function populateDB(tx) {
 
     $.getJSON(url, function (result) {
 
@@ -55,9 +58,9 @@ function populateDB(tx, url) {
 
         });
 
-        if (nextURL != null) {
-            populateDB(nextURL);
-        }
+        //if (nextURL != null) {
+        //    populateDB();
+        //}
     });
 
 
