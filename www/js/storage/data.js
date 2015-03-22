@@ -50,14 +50,7 @@ function populateDB(tx) {
             console.log("I got here!");
 
                 tx.executeSql("INSERT INTO rivers (uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng) " +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng], function(tx, res){
-                        console.log("Rows Affected:" + res.rowsAffected);
-                        console.log("Insert ID: " + res.insertId);
-                    }, errorCB);
-
-                tx.executeSql("SELECT * FROM rivers;", [], function(tx, res) {
-                    console.log("res.rows.length: " + res.rows.length + " -- should be 1");
-                }, errorCB);
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng], successDB, errorCB);
         });
 
         //if (nextURL != null) {
