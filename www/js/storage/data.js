@@ -12,9 +12,13 @@ function onDeviceReady() {
     db = window.sqlitePlugin.openDatabase({name: "DB", bgType: 1, androidLockWorkaround: 1});
 
     db.transaction(function (tx) {
-        tx.executeSql('DROP TABLE IF EXISTS RIVERS');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS RIVERS (uuid PRIMARY KEY, url TEXT, riverName TEXT, riverSection TEXT, km TEXT, gradeText TEXT, description TEXT, directions TEXT, putinLat TEXT, putinLng TEXT, takeOutLat TEXT, takeOUTLng TEXT)');
+        tx.executeSql("DROP TABLE IF EXISTS RIVERS");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS RIVERS (uuid PRIMARY KEY, url TEXT, riverName TEXT, riverSection TEXT, km TEXT, gradeText TEXT, description TEXT, directions TEXT, putinLat TEXT, putinLng TEXT, takeOutLat TEXT, takeOUTLng TEXT)");
 
+    });
+
+    db.executeSql("pragma table_info (RIVERS);", [], function(res) {
+        console.log("PRAGMA res: " + JSON.stringify(res));
     });
 
     populateDB(url);
