@@ -22,7 +22,7 @@ function onDeviceReady() {
 function createTables(tx) {
 
     tx.executeSql("DROP TABLE IF EXISTS rivers");
-    tx.executeSql("CREATE TABLE IF NOT EXISTS rivers (id integer primary key , uuid text, url text, riverName text, riverSection text, km text, gradeText text, description text, directions text, putinLat text, putinLng text, takeOutLat text, takeOUTLng text)");
+    tx.executeSql("CREATE TABLE IF NOT EXISTS rivers (id integer primary key, uuid text, url text, riverName text, riverSection text, km text, gradeText text, description text, directions text, putinLat text, putinLng text, takeOutLat text, takeOUTLng text)");
 
 }
 
@@ -54,9 +54,9 @@ function populateDB(tx) {
                         console.log("Rows Affected:" + res.rowsAffected);
                         console.log("Insert ID: " + res.insertId);
                     });
-                tx.executeSql("select count(id) as cnt from rivers;", [], function(tx, res) {
+
+                tx.executeSql("SELECT * FROM rivers;", [], function(tx, res) {
                     console.log("res.rows.length: " + res.rows.length + " -- should be 1");
-                    console.log("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
                 });
         });
 
@@ -94,5 +94,6 @@ function errorCB(err) {
 }
 // Success error callback
 function successCB() {
+    console.log("Success!");
 }
 
