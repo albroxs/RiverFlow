@@ -16,7 +16,7 @@ function onDeviceReady() {
 
 }
 
-function createTables(url) {
+function createTables(tx, url) {
 
     tx.executeSql("DROP TABLE IF EXISTS rivers");
     tx.executeSql("CREATE TABLE IF NOT EXISTS rivers (id integer primary key , uuid text, url text, riverName text, riverSection text, km text, gradeText text, description text, directions text, putinLat text, putinLng text, takeOutLat text, takeOUTLng text)");
@@ -24,7 +24,7 @@ function createTables(url) {
     populateDB(url);
 }
 
-function populateDB(url) {
+function populateDB(tx, url) {
 
     $.getJSON(url, function (result) {
 
@@ -46,14 +46,12 @@ function populateDB(url) {
 
             console.log("I got here!");
 
-            db.transaction(function (tx) {
                 tx.executeSql("INSERT INTO rivers (uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng) " +
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng], function(tx, res){
                         console.log("Rows Affected:" + res.rowsAffected);
                         console.log("Insert ID: " + res.insertId);
                     });
 
-            });
 
         });
 
