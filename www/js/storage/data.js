@@ -57,6 +57,10 @@ function populateDB(url) {
         if (nextURL != null) {
             populateDB(nextURL);
         }
+
+        db.executeSql("pragma table_info (RIVERS);", [], function(res) {
+            console.log("PRAGMA res: " + JSON.stringify(res));
+        });
     });
 
 
