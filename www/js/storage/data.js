@@ -45,7 +45,7 @@ function populateDB(url) {
             console.log("I got this far!");
 
             db.transaction(function (tx) {
-                tx.executeSql("INSERT INTO RIVERS (uuid, url, riverName, riverSection, km, description, directions, putinLat, putinLng, takeOutLat, takeOutLng) " +
+                tx.executeSql("INSERT INTO RIVERS (uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng) " +
                 "VALUES (" + uuid + "," + url + "," + riverName + "," + riverSection + "," + km + "," + gradeText + "," + description + "," +
                 directions + "," + putinLat + "," + putinLng + "," + takeOutLat + "," + takeOutLng + ");", [], function(tx, res){
                         console.log("Rows Affected:" + res.rowsAffected);
