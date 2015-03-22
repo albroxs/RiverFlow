@@ -50,7 +50,7 @@ function populateDB(tx) {
             console.log("I got here!");
 
                 tx.executeSql("INSERT INTO rivers (uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng) " +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng], successDB, errorCB);
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng], successCB, errorCB);
         });
 
         //if (nextURL != null) {
