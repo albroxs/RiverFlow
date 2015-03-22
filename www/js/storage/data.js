@@ -53,11 +53,11 @@ function populateDB(tx) {
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [uuid, url, riverName, riverSection, km, gradeText, description, directions, putinLat, putinLng, takeOutLat, takeOutLng], function(tx, res){
                         console.log("Rows Affected:" + res.rowsAffected);
                         console.log("Insert ID: " + res.insertId);
-                    });
+                    }, errorCB);
 
                 tx.executeSql("SELECT * FROM rivers;", [], function(tx, res) {
                     console.log("res.rows.length: " + res.rows.length + " -- should be 1");
-                });
+                }, errorCB);
         });
 
         //if (nextURL != null) {
