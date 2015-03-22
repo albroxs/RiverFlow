@@ -42,14 +42,15 @@ function populateDB(url) {
             var takeOutLat = result.data[i].position[1].lat;
             var takeOutLng = result.data[i].position[1].lat;
 
+            console.log("I got this far!");
+
             db.transaction(function (tx) {
                 tx.executeSql("INSERT INTO RIVERS (uuid, url, riverName, riverSection, km, description, directions, putinLat, putinLng, takeOutLat, takeOutLng) " +
-                "VALUES " + uuid + "," + url + "," + riverName + "," + riverSection + "," + km + "," + gradeText + "," + description + "," +
-                directions + "," + putinLat + "," + putinLng + "," + takeOutLat + "," + takeOutLng + ";", [], function(tx, res){
+                "VALUES (" + uuid + "," + url + "," + riverName + "," + riverSection + "," + km + "," + gradeText + "," + description + "," +
+                directions + "," + putinLat + "," + putinLng + "," + takeOutLat + "," + takeOutLng + ");", [], function(tx, res){
                         console.log("Rows Affected:" + res.rowsAffected);
                         console.log("Insert ID: " + res.insertId);
-                    }
-                );
+                    });
 
             });
 
