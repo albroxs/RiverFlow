@@ -76,7 +76,7 @@ function findRiver(query) {
     db.transaction(function (tx) {
 
         tx.executeSql(sqlStatement, [], function(tx, res) {
-            console.log(res.rows.item[tx]);
+            console.log(res);
         });
     });
 
