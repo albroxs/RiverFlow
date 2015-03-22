@@ -17,10 +17,6 @@ function onDeviceReady() {
 
     });
 
-    db.executeSql("pragma table_info (RIVERS);", [], function(res) {
-        console.log("PRAGMA res: " + JSON.stringify(res));
-    });
-
     populateDB(url);
 
 
@@ -80,11 +76,8 @@ function findRiver(query) {
     console.log(sqlStatement);
 
     db.transaction(function (tx) {
-
-        tx.executeSql("select count(uuid) as cnt from RIVERS;", [], function(tx, res) {
-            console.log("res.rows.length: " + res.rows.length + " -- should be 1");
-        //tx.executeSql(sqlStatement, [], function(tx, res) {
-        //    console.log(res);
+        tx.executeSql(sqlStatement, [], function(tx, res) {
+            console.log(res);
         });
     });
 
